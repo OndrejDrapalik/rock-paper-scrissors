@@ -5,23 +5,27 @@ let myText = 'I am a string';
 let newString = myText.replace('string', 'sausage');
 console.log(newString);
 
+// buttons is a node list. It looks and acts much like an array.
+const buttons = document.querySelectorAll('button');
+// we use the .forEach method to iterate through each button
+buttons.forEach((button) => {
+
+    // and for each one we add a 'click' listener
+    button.addEventListener('click', game);
+});
 
 function game() {
+    
     let choices = ["rock","paper","scissors"];
     const playerSelection = playerInput();
     const computerSelection = computerPlay();
     
     
     function playerInput() {
-        let playerChoise = prompt("Please choose your object").toLowerCase();
-        if (choices.includes(playerChoise)) {
-            console.log(playerChoise);
-            return playerChoise;
-        }
-            else {
-            console.log("Please choose either rock, paper or scissors")  
-            }
+        console.log("rockpesd");
+        return("rock");
     }
+ 
     
     function computerPlay() {
         let randomChoices = choices[Math.floor(Math.random()*choices.length)];
@@ -29,9 +33,7 @@ function game() {
         return randomChoices;
     }
     
-    
-    // If I devide it to 3 fuctions - computerWin a playerWin + draw -> it will be better for
-    //         counding the score
+
 
     function playRound(playerSelection, computerSelection) {
         if (playerSelection === "rock" && computerSelection === "rock") {
@@ -63,18 +65,4 @@ function game() {
     return(playRound(playerSelection, computerSelection)); 
 }
 
-for (let i=0; i<5; i++) {
-    console.log(game());
-}
-
-// // or while loop
-
-// let i = 0;
-// while (i<3) {
-//     console.log(game());
-//     i++;
-// }
-
-// // or different while loop
-// let i=3;
-// while(i) console.log(game())(i--);
+// console.log(game())
