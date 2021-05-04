@@ -5,25 +5,35 @@ let myText = 'I am a string';
 let newString = myText.replace('string', 'sausage');
 console.log(newString);
 
+////////////////////////////////////////////////////////////////////////////////
+
+// this tut is crutial –> https://www.w3schools.com/jsref/met_document_addeventlistener.asp
+
+let clickedButton = "";
+
 // buttons is a node list. It looks and acts much like an array.
 const buttons = document.querySelectorAll('button');
 // we use the .forEach method to iterate through each button
 buttons.forEach((button) => {
 
     // and for each one we add a 'click' listener
-    button.addEventListener('click', game);
+    button.addEventListener('click', function(e) {
+        clickedButton = e.target.name;
+    });
+    button.addEventListener('click', game); 
 });
 
+
+
 function game() {
-    
     let choices = ["rock","paper","scissors"];
     const playerSelection = playerInput();
     const computerSelection = computerPlay();
     
     
     function playerInput() {
-        console.log("rockpesd");
-        return("rock");
+        console.log(clickedButton);
+        return clickedButton;
     }
  
     
@@ -61,8 +71,10 @@ function game() {
             return("Something went terribly wrong.");
         }
     }
-    
+
+    console.log(playRound(playerSelection, computerSelection));
     return(playRound(playerSelection, computerSelection)); 
+    
 }
 
 // console.log(game())
