@@ -26,8 +26,13 @@ buttons.forEach((button) => {
 let clickedButton = ""; //Does not matter if this variable is stated here or at the top
 let playerScore = 0;
 let computerScore = 0;
+let winner = Math.max(playerScore, computerScore);
+
+
+
 
 function game() {
+
     let choices = ["rock","paper","scissors"];
     const playerSelection = playerInput();
     const computerSelection = computerPlay();
@@ -56,13 +61,13 @@ function game() {
         div2 = document.createElement('div');
         div2.innerHTML = computerScore;
         score2.replaceChild(div2, score2.children[0]);    //there needs to be some page element, <p></p> in this case, for replaceChild to work
-    }
+    }   
 
     function playRound() {
         // Kinda stuupid way how to handle it. But I am lazy to improve it now.
         // Maybe use some kind of event listener that watches #playerScore and #computerScore and fires after whoever win?
         if (playerScore > 4 || computerScore > 4) {
-            return("How did you enjoy the game?"); // This could be funtion that modifies DOM like scoreboardPlayer.
+            winnerAnnouncement(); // This could be funtion that modifies DOM like scoreboardPlayer.
             //return 0; no need to have return, variables are added nontheless (its because I vant to see values in the console)
         }    
             else if (playerSelection === "rock" && computerSelection === "rock") {
@@ -106,3 +111,27 @@ function game() {
 
 }
 
+function winnerAnnouncement() {
+
+    if  (playerScore > 4) {
+        playerWon();
+        }   else if (computerScore > 4) {
+            computerWon();
+        }   else {
+            console.log("Something went terribly wrong during winner announcement.");
+        }
+
+    function playerWon() {
+        const winnerIs = document.querySelector('#winnerAnnouncement');
+        let playerWon = document.createElement('div');
+        playerWon.innerHTML = "You won this GAME!";
+        winnerIs.replaceChild(playerWon, winnerIs.children[0]); 
+    }
+    
+    function computerWon() {
+        const winnerIs = document.querySelector('#winnerAnnouncement');
+        let computerWon = document.createElement('div');
+        computerWon.innerHTML = "Computer won this time.";
+        winnerIs.replaceChild(computerWon, winnerIs.children[0]); 
+    }
+}
