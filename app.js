@@ -41,7 +41,7 @@ function game() {
         console.log(clickedButton);
         return clickedButton;
     }
-    
+
     function computerPlay() {
         let randomChoices = choices[Math.floor(Math.random()*choices.length)];
         console.log(randomChoices);
@@ -53,6 +53,7 @@ function game() {
         const score1 = document.querySelector('#playerScore');
         let div1 = document.createElement('div');
         div1.innerHTML = playerScore;
+        div1.classList.add('numCount');
         score1.replaceChild(div1, score1.children[0]);    //there needs to be some page element, <p></p> in this case, for replaceChild to work
     }
 
@@ -60,15 +61,14 @@ function game() {
         const score2 = document.querySelector('#computerScore');
         div2 = document.createElement('div');
         div2.innerHTML = computerScore;
+        div2.classList.add('numCount');
         score2.replaceChild(div2, score2.children[0]);    //there needs to be some page element, <p></p> in this case, for replaceChild to work
     }   
 
     function playRound() {
-        // Kinda stuupid way how to handle it. But I am lazy to improve it now.
-        // Maybe use some kind of event listener that watches #playerScore and #computerScore and fires after whoever win?
-        if (playerScore > 4 || computerScore > 4) {
-            winnerAnnouncement(); // This could be funtion that modifies DOM like scoreboardPlayer.
-            //return 0; no need to have return, variables are added nontheless (its because I vant to see values in the console)
+        if (playerScore === 5 || computerScore === 5) {
+            winnerAnnouncement(); 
+ 
         }    
             else if (playerSelection === "rock" && computerSelection === "rock") {
             console.log("It's a draw.");
@@ -107,18 +107,21 @@ function game() {
     console.log(playRound()); //if the function above uses parametrs this function below needs to have them too & otheray around
     // return(playRound(playerSelection, computerSelection)); 
     scoreboardPlayer();
-    scoreboardComputer();
+    scoreboardComputer();    
 
 }
 
+//Problem is that the Winner announcement is wisible only after user clicks button again, even if one sice already reached 5 score
+ // Maybe use some kind of event listener that watches #playerScore and #computerScore and fires after whoever win?
 function winnerAnnouncement() {
 
-    if  (playerScore > 4) {
+    if  (playerScore === 5) {
         playerWon();
-        }   else if (computerScore > 4) {
+        }   else if (computerScore === 5) {
             computerWon();
         }   else {
-            console.log("Something went terribly wrong during winner announcement.");
+            game();
+            // console.log("Something went terribly wrong during winner announcement.");
         }
 
     function playerWon() {

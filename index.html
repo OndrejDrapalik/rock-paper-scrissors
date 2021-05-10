@@ -3,19 +3,27 @@
 <head>
   <title>Rock Paper Scissors!</title>
   <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body id="body">
+
+  <div id=scoreDisplay>
+    <div class="score" id="playerScore">
+      <div class="numCount">0</div>
+      <p class="legend">You</p>
+    </div>
+    <div class="score" id="computerScore">
+      <div class="numCount">0</div>
+      <p class="legend">Computer</p>
+    </div>
+  </div>
+
   <div id="container">
     <button id="1" name="rock">Rock</button>
     <button id="2" name="paper">Paper</button>
     <button id="3" name="scissors">Scissors</button>
   </div>
-  <div id="playerScore">
-    <div>0</div>
-  </div>
-  <div id="computerScore">
-    <div>0</div>
-  </div>
+
   <div id="winnerAnnouncement">
     <div></div>
   </div>
