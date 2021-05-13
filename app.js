@@ -23,6 +23,23 @@ buttons.forEach((button) => {
     button.addEventListener('click', game);
 });
 
+
+// Mutation observer -> https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver/observe
+const observer = new MutationObserver(function() {
+    if  (playerScore === 5 || computerScore === 5) { 
+        winnerAnnouncement();
+    }
+});
+
+let selectElement = document.querySelector('.scoreDisplay');
+observer.observe(selectElement, {
+    childList: true,
+    subtree: true,
+    characterData: true
+});
+
+
+    
 let clickedButton = ""; //Does not matter if this variable is stated here or at the top
 let playerScore = 0;
 let computerScore = 0;
@@ -107,9 +124,12 @@ function game() {
     console.log(playRound()); //if the function above uses parametrs this function below needs to have them too & otheray around
     // return(playRound(playerSelection, computerSelection)); 
     scoreboardPlayer();
-    scoreboardComputer();    
+    scoreboardComputer();
 
-}
+    // //listening to score change
+    // const selectElements = document.querySelectorAll('.numCount');
+    // selectElements.forEach(element => console.log(element));
+}   
 
 //Problem is that the Winner announcement is wisible only after user clicks button again, even if one sice already reached 5 score
  // Maybe use some kind of event listener that watches #playerScore and #computerScore and fires after whoever win?
@@ -117,8 +137,10 @@ function winnerAnnouncement() {
 
     if  (playerScore === 5) {
         playerWon();
+        playAgain();
         }   else if (computerScore === 5) {
             computerWon();
+            playAgain();
         }   else {
             game();
             // console.log("Something went terribly wrong during winner announcement.");
@@ -136,5 +158,15 @@ function winnerAnnouncement() {
         let computerWon = document.createElement('div');
         computerWon.innerHTML = "Computer won this time.";
         winnerIs.replaceChild(computerWon, winnerIs.children[0]); 
+    }
+
+    function playAgain() {
+        const winnerIs = document.querySelector('#winnerAnnouncement');
+        let wannaPlayAgain = document.createElement('button');
+        wannaPlayAgain.onclick = function() { // Note this is a function
+            document.location.reload();
+          };
+        wannaPlayAgain.innerHTML = "Play Again";
+        winnerIs.replaceChild(wannaPlayAgain, winnerIs.children[1]); 
     }
 }

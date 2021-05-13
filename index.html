@@ -7,13 +7,13 @@
 </head>
 <body id="body">
 
-  <div id=scoreDisplay>
+  <div id="scoreDisplay" class="scoreDisplay">
     <div class="score" id="playerScore">
-      <div class="numCount">0</div>
+      <div class="numCount" id="playerScoreInner">0</div>
       <p class="legend">You</p>
     </div>
     <div class="score" id="computerScore">
-      <div class="numCount">0</div>
+      <div class="numCount" id="computerScoreInner">0</div>
       <p class="legend">Computer</p>
     </div>
   </div>
@@ -25,7 +25,8 @@
   </div>
 
   <div id="winnerAnnouncement">
-    <div></div>
+    <div class="winnerAnnouncement"></div>
+    <div id="playAgain"></div>
   </div>
   <script src="app.js"></script>
 </body>
