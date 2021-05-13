@@ -8,24 +8,30 @@ html {
   }
 
 body,html {
-    margin: 0;
-    padding: 0;
+    /* margin: 0;
+    padding: 0; */
     font-family: sans-serif;
 }
 
 #body {
     display: flex;
-    flex: 1;
     min-height: 100vh;
     align-items: center;
-    justify-content: center;
+    /* DO NOT USE this if you dont want your content to center itselft everytime new element is added or removed */
+    /* justify-content: center; */
+    padding-top: 200px;
     flex-direction: column;
 }
+
+    .roundResult {
+        display: flex;
+        height: 200px;
+    }
 
     #scoreDisplay {
         display: flex;
         /* flex: 1; */
-        min-height: 1vh;
+        min-height: 100px;
         align-items: center;
         justify-content: center;
         flex-direction: row;
@@ -40,18 +46,44 @@ body,html {
 
         }
 
-        .numCount {
-            padding: 0 50px;
+            .numCount {
+                padding: 0 50px;
+            }
+            .legend {
+                font-size: 15px;
+            }
+
+    #container {
+        display: flex;  
+        justify-content: center;   
+        align-items: center;
+        margin: 20px 20px 20px 20px;
         }
-        .legend {
-            font-size: 15px;
+        
+        button {
+            margin: 10px;
         }
 
     #winnerAnnouncement {
         display: flex;
         /* flex: 1; */
-        min-height: 20vh;
+        /* min-height: 10vh; */
         align-items: center;
-        justify-content: center;
-        flex-direction: column; 
+        justify-content: flex-end;
+        flex-direction: column;
+        padding: 50px 0 0 0; 
     }
+
+    #container2 {
+        display: flex;  
+        justify-content: center;   
+        align-items: center;
+        margin: 20px 20px 20px 20px;
+        }
+        
+        .playAgain {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }

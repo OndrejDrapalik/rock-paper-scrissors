@@ -25,11 +25,13 @@ buttons.forEach((button) => {
 
 
 // Mutation observer -> https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver/observe
+//This is the part that effectivly displays winner announcement to user
 const observer = new MutationObserver(function() {
     if  (playerScore === 5 || computerScore === 5) { 
         winnerAnnouncement();
     }
 });
+
 
 let selectElement = document.querySelector('.scoreDisplay');
 observer.observe(selectElement, {
@@ -39,7 +41,8 @@ observer.observe(selectElement, {
 });
 
 
-    
+//variable used in the game() function stated here
+let choices = ["rock","paper","scissors"];
 let clickedButton = ""; //Does not matter if this variable is stated here or at the top
 let playerScore = 0;
 let computerScore = 0;
@@ -47,10 +50,9 @@ let winner = Math.max(playerScore, computerScore);
 
 
 
-
+//actual logic of the game goes here
 function game() {
 
-    let choices = ["rock","paper","scissors"];
     const playerSelection = playerInput();
     const computerSelection = computerPlay();
     
@@ -82,17 +84,27 @@ function game() {
         score2.replaceChild(div2, score2.children[0]);    //there needs to be some page element, <p></p> in this case, for replaceChild to work
     }   
 
+    function printTheResult(text) {
+        const roundResult = document.querySelector('.roundResult');
+        let textResult = document.createElement('p');
+        textResult.innerHTML = `${text}`;
+        roundResult.replaceChild(textResult, roundResult.children[0]); 
+    }
+
     function playRound() {
         if (playerScore === 5 || computerScore === 5) {
             winnerAnnouncement(); 
  
         }    
             else if (playerSelection === "rock" && computerSelection === "rock") {
+            printTheResult("It's a draw.")
             console.log("It's a draw.");
         }   else if (playerSelection === "rock" && computerSelection === "paper") {
+            printTheResult("You lost!")
             console.log("You lost!");
             computerScore += 1;
         }   else if (playerSelection === "rock" && computerSelection === "scissors") {
+            printTheResult("Congratz, you win!")
             console.log("Congratz, you win!");
             playerScore += 1;
             
@@ -131,8 +143,6 @@ function game() {
     // selectElements.forEach(element => console.log(element));
 }   
 
-//Problem is that the Winner announcement is wisible only after user clicks button again, even if one sice already reached 5 score
- // Maybe use some kind of event listener that watches #playerScore and #computerScore and fires after whoever win?
 function winnerAnnouncement() {
 
     if  (playerScore === 5) {
@@ -161,12 +171,13 @@ function winnerAnnouncement() {
     }
 
     function playAgain() {
-        const winnerIs = document.querySelector('#winnerAnnouncement');
+        const winnerIs = document.querySelector('#container2');
         let wannaPlayAgain = document.createElement('button');
+        wannaPlayAgain.setAttribute("id", "playAgain");
         wannaPlayAgain.onclick = function() { // Note this is a function
             document.location.reload();
           };
         wannaPlayAgain.innerHTML = "Play Again";
-        winnerIs.replaceChild(wannaPlayAgain, winnerIs.children[1]); 
+        winnerIs.replaceChild(wannaPlayAgain, winnerIs.children[0]); 
     }
 }
