@@ -13,6 +13,10 @@ body,html {
     font-family: sans-serif;
 }
 
+button {
+    margin: 10px;
+}
+
 #body {
     display: flex;
     min-height: 100vh;
@@ -28,7 +32,7 @@ body,html {
         height: 200px;
     }
 
-    #scoreDisplay {
+    .scoreDisplay {
         display: flex;
         /* flex: 1; */
         min-height: 100px;
@@ -43,7 +47,6 @@ body,html {
             justify-content: center;
             flex-direction: column;
             /* to center it by text size add padding here */
-
         }
 
             .numCount {
@@ -53,16 +56,13 @@ body,html {
                 font-size: 15px;
             }
 
-    #container {
+    #container {  
         display: flex;  
         justify-content: center;   
         align-items: center;
         margin: 20px 20px 20px 20px;
         }
         
-        button {
-            margin: 10px;
-        }
 
     #winnerAnnouncement {
         display: flex;
@@ -80,7 +80,7 @@ body,html {
         align-items: center;
         margin: 20px 20px 20px 20px;
         }
-        
+
         .playAgain {
             display: flex;
             align-items: center;

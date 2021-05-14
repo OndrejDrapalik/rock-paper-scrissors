@@ -11,7 +11,7 @@ console.log(newString);
 
 
 
-// buttons is a node list. It looks and acts much like an array.
+// buttons is a node list. It looks and acts much like an array but you can not use the same array methods.
 const buttons = document.querySelectorAll('button');
 // we use the .forEach method to iterate through each button
 buttons.forEach((button) => {
@@ -46,6 +46,7 @@ let choices = ["rock","paper","scissors"];
 let clickedButton = ""; //Does not matter if this variable is stated here or at the top
 let playerScore = 0;
 let computerScore = 0;
+//Actually I am not using this, may come handy when refactoring the code
 let winner = Math.max(playerScore, computerScore);
 
 
@@ -93,7 +94,8 @@ function game() {
 
     function playRound() {
         if (playerScore === 5 || computerScore === 5) {
-            winnerAnnouncement(); 
+            // winnerAnnouncement();
+            console.log("Winner is displayed on the DOM now"); 
  
         }    
             else if (playerSelection === "rock" && computerSelection === "rock") {
@@ -109,20 +111,26 @@ function game() {
             playerScore += 1;
             
         }   else if (playerSelection === "paper" && computerSelection === "paper") {
+            printTheResult("It's a draw.");
             console.log("It's a draw.");
         }   else if (playerSelection === "paper" && computerSelection === "scissors") {
+            printTheResult("You lost!");
             console.log("You lost!");
             computerScore += 1;
         }   else if (playerSelection === "paper" && computerSelection === "rock") {
+            printTheResult("Congratz, you win!");
             console.log("Congratz, you win!");
             playerScore += 1;
     
         }   else if (playerSelection === "scissors" && computerSelection === "scissors") {
+            printTheResult("It's a draw.");
             console.log("It's a draw."); 
         }   else if (playerSelection === "scissors" && computerSelection === "rock") {
+            printTheResult("You lost!");
             console.log("You lost!");
             computerScore += 1;
         }   else if (playerSelection === "scissors" && computerSelection === "paper") {
+            printTheResult("Congratz, you win!");
             console.log("Congratz, you win!");
             playerScore += 1;
     
